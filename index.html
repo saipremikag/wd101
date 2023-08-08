@@ -1,66 +1,89 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
+<style>
+.container {
+  height: 60%;
+  width:30%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  line-height: 1.5;
+}
+.container1{
+  height: 60%;
+  width:50%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  line-height: 1.5;
+}
+label {
+      display: inline-block;
+      width: 100px; 
+      margin-right: 10px; 
+      font-weight: bold;
+    }
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+   .move-left
+   {
+      float:left;
+   }
+   button{
+      padding-top:5px;
+   }
+   table {
+      width: 100%;
+      border-collapse: 1px;
+    }
+
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+</style>
 <body>
-    <div class="container">
-        <form id="registration-form" action="#" method="post">
-            <div>
-                <h1>Registration Form</h1>
-                <div class="label-container">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                    <div class="error-message" id="name-error"></div>
-                </div>
-                <div class="label-container">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your mailId">
-                    <div class="error-message" id="email-error"></div>
-                </div>
-                <div class="label-container">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required placeholder="Enter your password">
-                    <div class="error-message" id="password-error"></div>
-                </div>
-                <div class="label-container">
-                    <label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" name="dob" required>
-                    <div class="error-message" id="dob-error"></div>
+   <center> 
+      <form id="UserDetails">
+         <div class="container">
+       <center> <h1> Registration form </h1></center>  
+        <label for="name">Name</label>
+        <input required type="text" id="name" name="name" placeholder="Enter full name">
+      <br>
+      <br>
+        <label for="email">Email</label>
+        <input required type="email" id="email" name="email" placeholder="enter email">
+     <br>
+     <br>
+        <label for="password">Password</label>
+        <input required type="password" id="password" name="password" placeholder="enter password">
+     <br>
+     <br>
+        <label for="dob">Date of Birth</label>
+        <input required type="date" id="dob" name="dob" min="1968-08-08" max="2005-08-08"/>
+     <br>
+     <br>
+        <input required type="checkbox" id="acceptTerms" name="acceptTerms" class="move-left">
+        <label for="acceptTerms" class="move-left">Accept Terms & Conditions</label>
+     <br>
+     <br>
+        <button type="submit" style="background-color:green;" class="move-left">Submit</button>
+      </form>      
+      </div>
+      <div class="container1">
+         <center><h2>Entries</h2></center>
+         <div id="User-details"></div>
+      </div>
+   </center>
+     <script src="index.js"></script>
 
-                </div>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="accept-terms" name="accept-terms" required>
-                    <label for="accept-terms">Accept Terms & Conditions</label>
-                    <div class="error-message" id="terms-error"></div>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="table-container">
-        <h2>Entered Details</h2>
-        <table id="details-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Dob</th>
-                    <th>Accepted terms?</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data will be added here using JavaScript -->
-            </tbody>
-        </table>
-    </div>
-
-    <script src="index.js"></script>
 </body>
-</html>
-
