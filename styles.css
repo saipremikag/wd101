@@ -1,0 +1,107 @@
+/* Reset some default margin/padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set the background color of the whole webpage */
+body {
+    background-color: lightyellow;
+}
+
+/* Center the container horizontally on the page */
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto; /* Add margin for spacing from top border */
+    text-align: center;
+    padding: 20px;
+    background-color: lightblue; /* Set background color to light blue */
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: left; /* Align the error message to the left */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Increase margin for spacing between fields */
+}
+
+.label-container > label {
+    display: inline-block;
+    font-weight: bold;
+    text-align: left;
+}
+
+.label-container > input {
+    flex: 1;
+    margin-left: 10px;
+    padding: 8px;
+    background-color: lightgray; /* Set background color of input fields to light gray */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Set the placeholder text color */
+.label-container > input::placeholder {
+    color: #999;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start; /* Align the checkbox to the top */
+    font-size: 14px; /* Adjust the font size of the label */
+    margin-top: 10px;
+    justify-content: flex-start; /* Start from the left of the container */
+}
+
+.checkbox-container label {
+    margin-left: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#details-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+#details-table th, #details-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
