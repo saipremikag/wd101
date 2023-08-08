@@ -1,78 +1,49 @@
-const form = document.getElementById('registration-form');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const dobInput = document.getElementById('dob');
-const acceptTermsInput = document.getElementById('accept-terms');
-const tableBody = document.querySelector('#details-table tbody');
-
-function isNameValid() {
-    return /^[a-zA-Z\s.]+$/.test(nameInput.value);
-}
-
-function isDobValid() {
-    const currentDate = new Date();
-    const dob = new Date(dobInput.value);
-    const age = currentDate.getFullYear() - dob.getFullYear();
-
-    console.log("Age:", age);
-
-    if (age < 18 || age > 55) {
-        const dobError = document.getElementById('dob-error');
-        dobError.textContent = "Age should be between 18 and 55.";
-        return false;
-    } else if (dob.getFullYear() < 1968 || dob.getFullYear() > 2005) {
-        const dobError = document.getElementById('dob-error');
-        dobError.textContent = "Year of birth should be between 1968 and 2005.";
-        return false;
-    } else {
-        const dobError = document.getElementById('dob-error');
-        dobError.textContent = ""; // Clear the error message
-        return true;
+let user_det=document.getElementById("UserDetails");
+const retent=()=> {
+    let ent= localStorage.getItem("User-details");
+    if(ent){
+        ent=JSON.parse(ent);
     }
+    else{
+        ent=[];
+    }
+    return ent;
 }
-
-
-function isEmailValid(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-form.addEventListener('submit', function (event) {
+let userDet=retent();
+const dispent=()=> {
+    const ent=retent();
+    let tableEntries = '';
+    for (const entry of ent) {
+        const nameCell = `<td>${entry.name}</td>`;
+        const emailCell = `<td>${entry.email}</td>`;
+        const passwordCell = `<td>${entry.password}</td>`;
+        const dobCell = `<td>${entry.dob}</td>`;
+        const acceptTermsCell = `<td>${entry.acceptTerms ? 'true' : 'false'}</td>`;
+      
+        const row = `<tr>${nameCell}${emailCell}${passwordCell}${dobCell}${acceptTermsCell}</tr>`;
+        tableEntries += row;
+      }
+    const table = `<table><tr><th>Name</th><th>Email</th><th>Password</th><th>Dob</th><th>Accepted terms?</th></tr>${tableEntries}</table>`;
+    let details= document.getElementById("User-details");
+    details.innerHTML=table;
+} 
+const SaveDet=(event)=>{
     event.preventDefault();
-
-    if (!isNameValid() || !isDobValid() || !isEmailValid(emailInput.value)) {
-        return;
-    }
-
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    const dob = dobInput.value;
-    const acceptedTerms = acceptTermsInput.checked ? 'Yes' : 'No';
-
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `<td>${name}</td><td>${email}</td><td>${password}</td><td>${dob}</td><td>${acceptedTerms}</td>`;
-    tableBody.appendChild(newRow);
-
-    // Save data to local storage
-    const entries = JSON.parse(localStorage.getItem('entries')) || [];
-    entries.push({ name, email, password, dob, acceptedTerms });
-    localStorage.setItem('entries', JSON.stringify(entries));
-
-    // Clear the form fields
-    nameInput.value = '';
-    emailInput.value = '';
-    passwordInput.value = '';
-    dobInput.value = '';
-    acceptTermsInput.checked = false;
-});
-
-// Load data from local storage on page load
-window.addEventListener('load', function () {
-    const entries = JSON.parse(localStorage.getItem('entries')) || [];
-    entries.forEach(entry => {
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `<td>${entry.name}</td><td>${entry.email}</td><td>${entry.password}</td><td>${entry.dob}</td><td>${entry.acceptedTerms}</td>`;
-        tableBody.appendChild(newRow);
-    });
-});
+    const name=document.getElementById("name").value;
+    const email=document.getElementById("email").value;
+    const password=document.getElementById("password").value;
+    const dob=document.getElementById("dob").value;
+    const acceptTerms=document.getElementById("acceptTerms").value;
+const entry={
+    name,
+    email,
+    password,
+    dob,
+    acceptTerms
+};
+userDet.push(entry);
+localStorage.setItem("User-details",JSON.stringify(userDet));
+dispent();
+}
+user_det.addEventListener("submit",SaveDet);
+dispent();
